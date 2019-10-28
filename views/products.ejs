@@ -1,0 +1,35 @@
+<%include header %>
+  <style media="screen">
+    img{
+      /*width: 100%;*/
+    }
+  </style>
+  <div class=container>
+    <div class="jumbotron">
+      <div class="container">
+
+        <h1>All Products</h1>
+        <p>Hand-picked Products from all over the world</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/products/new">Add new Product</a>
+        </p>
+      </div>
+    </div>
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+      <% products.forEach(function(product){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+              <img src="<%= product.img_url %>" alt="">
+              <div class="caption">
+                <h4><%= product.product_name %></h4>
+                <h5><i class="fas fa-rupee-sign"></i><%= product.price %></h5>
+              </div>
+              <a class="btn btn-primary" href="/products/<%=product.product_id%>">More Info</a>
+            </div>
+          </div>
+      <% }); %>
+    </div>
+
+  </div>
+
+<% include footer %>
