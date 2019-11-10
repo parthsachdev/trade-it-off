@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="shortcut icon" href="/favicon.ico">
     <title> Trade It Off !!! </title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link 
     rel="stylesheet" 
     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -16,35 +18,50 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
-  <style>
+  <!-- <style>
     body { padding-top: 100px; }
-  </style>
+  </style> -->
 
   <body>
+    <div class="container" style="padding-top: 50px;">
+      <!-- navbar -->
+      <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top">
+        <a href="/" class="navbar-brand">Trade It Off</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
 
-    <!-- navbar -->
-    <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top">
-      <a href="/" class="navbar-brand">Trade It Off</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"> </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="navbar-item">
-            <a href="#" class="nav-link"> Orders </a>
-          </li>
+            <li class="navbar-item">
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Categories
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/mobiles"> Mobiles </a></li>
+                    <li><a href="/furniture"> Furniture </a></li>
+                    <li><a href="/bikes"> Bikes </a></li>
+                  </ul>
+                </div>
+            </li>
 
-          <li class="navbar-item">
-            <a href="/login" class="nav-link"> Login </a>
-          </li>
+            <li class="navbar-item">
+              <a href="/orders" class="nav-link"> Orders </a>
+            </li>
+  
+            <li class="navbar-item">
+              <a href="/login" class="nav-link"> Login </a>
+            </li>
+  
+            <li class="navbar-item">
+                <a href="/signup" class="nav-link"> Sign Up </a>
+            </li>
+  
+            <li class="navbar-item">
+              <a href="/cart" class="nav-link"> Cart </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-          <li class="navbar-item">
-              <a href="/signup" class="nav-link"> Sign Up </a>
-          </li>
-
-          <li class="navbar-item">
-            <a href="#" class="nav-link"> Cart </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    </div>

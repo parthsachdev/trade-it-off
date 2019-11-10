@@ -1,20 +1,19 @@
 <%include header %>
   <style media="screen">
     img{
-      /*width: 100%;*/
+      width: 100%;
     }
   </style>
   <div class=container>
-    <div class="jumbotron">
-      <div class="container">
 
+    <div class="jumbotron">
         <h1>All Products</h1>
         <p>Hand-picked Products from all over the world</p>
         <p>
           <a class="btn btn-lg btn-primary" href="/products/new">Add new Product</a>
         </p>
-      </div>
     </div>
+
     <div class="row text-center" style="display:flex; flex-wrap:wrap;">
       <% products.forEach(function(product){ %>
         <div class="col-md-3 col-sm-6">

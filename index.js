@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const port = 3031;
 
-app = express();
+var app = express();
 
 // Static directory: public
 app.use(express.static(__dirname+"/public"));
@@ -10,16 +10,19 @@ app.set('view engine', 'ejs');
 
 // MySQL connection setup
 var conn = mysql.createConnection({
+    connectionLimit: 50,
     host: "localhost",
     user: "parth",
-    password: "",
+    password: "parth_admin",
     database: "ecommerce"
 });
+
 conn.connect((err) => {
     if (err) {
         console.log(err);
+    }   else {
+        console.log("Connection to MySQL server successful.");
     }
-    console.log("Connection to MySQL server successful.");
 });
 
 // Home Page
@@ -48,29 +51,51 @@ app.get("/signup", (req, res) => {
     res.render("signup.ejs");
 });
 
-// Products Page
-// app.get("/products", (req, res) => {
-//     var sql_query = "SELECT * FROM products";
-//     conn.query(sql_query, (err, products, fields) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.render("products.ejs", {
-//                 products: products
-//             });
-//         }
-//     });
-// });
-
-
-
-app.get("/process_get", (req, res) => {
-    var response = {
-        first_name: req.query.first_name
-    };
-    console.log(response);
-    res.send(response);
+// Orders Page
+app.get("/orders", (req, res) => {
+    console.log("GET " + req.url);
+    res.render("orders.ejs");
 });
+
+// Cart Page
+app.get("/cart", (req, res) => {
+    console.log("GET " + req.url);
+    res.render("cart.ejs");
+});
+
+// Products Card - one specific product
+app.get("/product", (req, res) => {
+    console.log("GET " + req.url);
+    sql_query = "SELECT * FROM products";
+    conn.query(sql_query, (err, rows, fields) => {
+        console.log(rows);
+    });
+    // get information about the product and send an object
+    // var prod = {}
+    res.render("product.ejs");
+});
+
+// See database
+app.get("/database", (req, res) => {
+    console.log("GET " + req.url);
+    res.render("database.ejs");
+});
+
+// Products Page
+app.get("/products", (req, res) => {
+    var sql_query = "SELECT * FROM products";
+    conn.query(sql_query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("products.ejs", {
+                products: rows
+            });
+        }
+    });
+});
+
+
 
 var server = app.listen(port, () => {
     var host = server.address().address;
