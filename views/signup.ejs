@@ -1,42 +1,65 @@
 <% include header %>
 
-<div class="container" style="margin-top: 20px;">
-    <form action="GET">
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label"> Name </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="name">
-            </div>
-        </div>
+<script>
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
 
-        <div class="form-group row">
-            <label for="email" class="col-sm-3 col-form-label"> Email </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="email">
-            </div>
-        </div>
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
 
-        <div class="form-group row">
-            <label for="mobile" class="col-sm-3 col-form-label"> Mobile Number </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="mobile">
-            </div>
-        </div>
+<!-- Custom Theme files -->
+<link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
 
-        <div class="form-group row">
-            <label for="password" class="col-sm-3 col-form-label"> Password </label>
-            <div class="col-sm-9">
-                <input type="password" class="form-control" id="password">
-            </div>
-        </div>
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+<!-- //web font -->
 
-        <div class="row">
-            <div class="col-sm-9 offset-sm-3">
-                <button type="submit" class="btn btn-primary"> Submit </button>
-            </div>
-        </div>
-    </form>
-</div>
+<!-- main -->
+<div class="w3layouts-main"> 
+	<div class="bg-layer">
+		<h1>Welcome Back!</h1>
+		<div class="header-main">
+			<div class="main-icon">
+				<span class="fa fa-eercast"></span>
+			</div>
+			<div class="header-left-bottom">
+				<form action="/login" method="post">
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						<input type="text" name="username" placeholder="Name" required=""/ autocomplete="off">
+					</div>
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						<input type="number" name="phone" placeholder="Mobile" required=""/>
+					</div>
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						<input type="email" name="email" placeholder="Email Address" required=""/>
+					</div>
+					<div class="icon1">
+						<span class="fa fa-lock"></span>
+						<input type="password" name="password" placeholder="Password" required=""/>
+					</div>
+					<div class="bottom">
+						<button class="btn">Sign Up</button>
+					</div>
+				</form>	
+			</div>
+			<div class="social">
+				<ul>
+					<li>or sign up using : </li>
+					<li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
+					<li><a href="#" class="google"><span class="fa fa-google-plus"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>	
+<!-- //main -->
 
-</body>
-</html>
+<% include footer %>

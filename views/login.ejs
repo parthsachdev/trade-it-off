@@ -1,26 +1,65 @@
 <% include header %>
 
-<div class="container" style="margin-top: 20px;">
-    <form action="GET">
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="email"> Email id </label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="email">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="password"> Password </label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="password">
-            </div>
-        </div>
+<script>
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
 
-        <div class="row">
-            <div class="col-sm-9 offset-sm-3">
-                <button type="submit" class="btn btn-primary"> Login </button>
-            </div>
-        </div>
-    </form>
-</div>
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+
+<!-- Custom Theme files -->
+<link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+<!-- //web font -->
+
+<!-- main -->
+<div class="w3layouts-main"> 
+	<div class="bg-layer">
+		<h1>Welcome Back!</h1>
+		<div class="header-main">
+			<div class="main-icon">
+				<span class="fa fa-eercast"></span>
+			</div>
+			<div class="header-left-bottom">
+				<form action="/login/" method="post">
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						<input type="email" name="email" placeholder="Email Address" required=""/>
+					</div>
+					<div class="icon1">
+						<span class="fa fa-lock"></span>
+						<input type="password" name="password" placeholder="Password" required=""/>
+					</div>
+					<div class="login-check">
+						<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
+					</div>
+					<div class="bottom">
+						<button class="btn">Log In</button>
+					</div>
+					<div class="links">
+						<p><a href="#">Forgot Password?</a></p>
+						<p class="right"><a href="#">New User? Register</a></p>
+						<div class="clear"></div>
+					</div>
+				</form>	
+			</div>
+			<div class="social">
+				<ul>
+					<li>or login using : </li>
+					<li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
+					<li><a href="#" class="google"><span class="fa fa-google-plus"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>	
+<!-- //main -->
 
 <% include footer %>

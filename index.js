@@ -25,24 +25,25 @@ conn.connect((err) => {
     }
 });
 
-// Home Page
+// Home Page and All Products Page
 app.get("/", (req, res) => {
     console.log("GET " + req.url);
-    res.render("landing.ejs");
-});
-
-// Sample Modal (pop-up window)
-app.get("/modal", (req, res) => {
-    console.log("GET " + req.url);
-    res.render("modal.ejs");
+    var sql_query = "SELECT * FROM products WHERE status=1";
+    conn.query(sql_query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("landing.ejs", {
+                products: rows
+            });
+        }
+    });
 });
 
 // Login Page
 app.get("/login", (req, res) => {
     console.log("GET " + req.url);
     res.render("login.ejs");
-
-    // Change the login button to name of Account
 });
 
 // Signup Page
@@ -57,43 +58,54 @@ app.get("/orders", (req, res) => {
     res.render("orders.ejs");
 });
 
-// Cart Page
-app.get("/cart", (req, res) => {
-    console.log("GET " + req.url);
-    res.render("cart.ejs");
-});
-
-// Products Card - one specific product
-app.get("/product", (req, res) => {
-    console.log("GET " + req.url);
-    sql_query = "SELECT * FROM products";
-    conn.query(sql_query, (err, rows, fields) => {
-        console.log(rows);
+// Product page with product_id
+app.get("/products/:id", (req, res) => {
+    var pid = req.params.id;
+    var sql_query = "select * from products where product_id=" + pid;
+    conn.query(sql_query, (err, product, fields) => {
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.render("show1.ejs",{product: product[0]});
+      }
     });
-    // get information about the product and send an object
-    // var prod = {}
-    res.render("product.ejs");
 });
 
-// See database
-app.get("/database", (req, res) => {
-    console.log("GET " + req.url);
-    res.render("database.ejs");
-});
+app.get("/products/buy/:id/:name/:cost/:category/:seller", (req,res) => {
+    var product_id = req.params.id;
+    var seller_id = req.params.seller;
 
-// Products Page
-app.get("/products", (req, res) => {
-    var sql_query = "SELECT * FROM products";
-    conn.query(sql_query, (err, rows, fields) => {
-        if (err) {
+    var query = "UPDATE products SET status=0 WHERE product_id=?";
+    conn.query(query, product_id, function(err, product, fields){
+        if(err){
             console.log(err);
-        } else {
-            res.render("products.ejs", {
-                products: rows
-            });
+        }
+        else{
+            res.render("buy.ejs", {seller_id:seller_id});
         }
     });
 });
+
+
+// Login
+app.post("/login/:user_id/:password", (req, res) => {
+    var user_id = req.params.user_id;
+    var password = req.params.password;
+    var sql_query = "SELECT password FROM user WHERE user_id=" + user_id;
+    conn.query(sql_query, (err, rows, fields) => {
+        if (err) console.log(err);
+        else {
+            console.log(rows)
+            // if (password==rows[0]) {
+            //     res.render("landing.ejs", {
+            //         user_id: user_id
+            //     })
+            // }
+        }
+    })
+});
+  
 
 
 

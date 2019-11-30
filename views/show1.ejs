@@ -1,0 +1,35 @@
+<% include header %>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Select payment option</h3>
+      <div class="list-group">
+        <li class="list-group-item active">Cash on delivery</li>
+        <li class="list-group-item">Credit Card</li>
+        <li class="list-group-item">Debit Card</li>
+        <li class="list-group-item">Net Banking</li>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h4>Product in your cart:</h4>
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= product.img_url %>" alt="">
+        <div class="caption-full">
+          <h4 class="pull-right"><i class="fas fa-rupee-sign"></i><%=product.price%></h4>
+          <h4><a><%= product.product_name %></a></h4>
+          <p><%= product.description %></p>
+        </div>
+      </div>
+      <div class="well">
+        <div class="text-right">
+          <a href="/products/buy/<%=product.product_id%>/<%=product.product_name%>/<%=product.price%>/<%=product.category%>/<%=product.user_id%>" class="btn btn-success">BUY NOW</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <% include footer %>
