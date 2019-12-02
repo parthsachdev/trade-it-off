@@ -55,21 +55,28 @@
 <br>
 <br>
 
-<!-- All the Products -->
-<div class=container>
-    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
-      <% products.forEach(function(product){ %>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail">
-              <img src="<%= product.img_url %>" alt="">
-              <div class="caption">
-                <h4><%= product.product_name %></h4>
-                <h5><i class="fas fa-rupee-sign"> </i><%= product.price %></h5>
-              </div>
-              <a class="btn btn-primary" href="/products/<%=product.product_id%>">More Info</a>
+<div class="container">
+    <div class="jumbotron">
+        <h1> Select from a wide range of products </h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <% products.forEach(function(product){ %>
+            <div class="col-lg-3 col-md-3" style="padding-top: 5rem;">
+                <div class="card" style="width: 18rem; height: 25rem;">
+                    <img src="<%= product.img_url %>" class="card-img-top" style="height: 200px; width: auto; max-width: 300px">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.product_name %></h5>
+                        <h4 class="card-text"><i class="fas fa-rupee-sign"> </i><%= product.price %></h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/products/<%=product.product_id%>" class="btn btn-info">More Info</a>
+                    </div>
+                </div>
             </div>
-          </div>
-      <% }); %> 
+        <% }); %> 
     </div>
 </div>
 

@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-const http = require('http');
 const path = require('path');
 const fs = require('fs');
 
@@ -10,7 +9,19 @@ const multer = require('multer');
 const port = 3031;
 
 var app = express();
-const httpServer = http.createServer(app);
+
+// Set storage engine
+const storage = multer.diskStorage({
+    destination: "public/uploads/",
+    filename: (req, file, callback) => {
+            callback(null, file.fieldname+'-'+Date.now()+path.extname(file.originalname));
+        }
+});
+
+// Init Upload
+const upload = multer({
+    storage: storage
+}).single('uploadedImage');
 
 // Static directory: public
 app.use(express.static(__dirname+"/public"));
@@ -137,6 +148,38 @@ app.get("/newproduct", (req, res) => {
     }
 });
 
+// Add product post
+app.post("/newproduct", (req, res) => {
+    var newproduct;
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('newproduct.ejs', {
+            msg: err
+            });
+        }
+        else {
+            newproduct = {
+                product_name: req.body.productname,
+                user_id: login_user_id,
+                price: req.body.price,
+                category: req.body.category,
+                img_url: "/uploads/"+req.file.filename, 
+                description: req.body.description,
+                status: 1
+            };
+            var sql_query = "INSERT INTO products SET ?";
+            conn.query(sql_query, newproduct, (err, rows, fields) => {
+                if (err) {
+                    console.log(err);
+                    throw err
+                }
+                else {
+                    res.redirect("/");
+                }
+            });
+        }
+    });
+});
 
 // Login Page
 app.get("/login", (req, res) => {
@@ -176,9 +219,10 @@ app.get("/products/:id", (req, res) => {
 });
 
 // Buy Now
-app.get("/products/buy/:id/:name/:cost/:category/:seller", (req,res) => {
+app.get("/products/buy/:id/:seller", (req,res) => {
     var product_id = req.params.id;
     var seller_id = req.params.seller;
+    var buyer_id = login_user_id;
 
     var query = "UPDATE products SET status=0 WHERE product_id=?";
     conn.query(query, product_id, function(err, product, fields){
@@ -262,7 +306,3 @@ var server = app.listen(port, () => {
     var host = server.address().address;
     console.log("Server running on port "+ port + " and host " + host + ".");
 });
-
-httpServer.listen(3000, () => {
-    console.log("HTTP Server id listening");
-})
