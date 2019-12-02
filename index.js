@@ -36,10 +36,10 @@ var login_user_id = "";
 // MySQL connection setup
 var conn = mysql.createConnection({
     connectionLimit: 50,
-    host: "localhost",
-    user: "parth",
-    password: "parth_admin",
-    database: "ecommerce"
+    host: "sql12.freemysqlhosting.net",
+    user: "sql12314111",
+    password: "YPjbufNd5u",
+    database: "sql12314111"
 });
 conn.connect((err) => {
     if (err) {
@@ -105,7 +105,7 @@ app.get("/bikes", (req, res) => {
 
 // Category Furniture
 app.get("/furniture", (req, res) => {
-    sql_query = "SELECT * FROM PRODUCTS WHERE category='furniture' AND status=1";
+    sql_query = "SELECT * FROM products WHERE category='furniture' AND status=1";
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
