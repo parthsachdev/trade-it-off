@@ -1,0 +1,42 @@
+<% include header %>
+
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col-lg-4 form-group">
+                <label for="productname">Product Name</label>
+                <input type="text" class="form-control" id="productname" placeholder="New iPhone 6">
+            </div>
+            <div class="col-lg-4 form-group">
+                <label for="price">Price  <i class="fas fa-rupee-sign"></i></label>
+                <input type="number" class="form-control" id="price">
+            </div>
+            <div class="col-lg-4 form-group">
+                <label class="my-1 mr-2" for="category"> Category </label>
+                <select class="custom-select my-1 mr-sm-2 id="category">
+                    <option selected> Choose... </option>
+                    <option value="furniture"> Furniture </option>
+                    <option value="cars"> Car </option>
+                    <option value="bike"> Bike </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="productdescription">Product Description</label>
+            <textarea class="form-control" id="productdescription" rows="3"></textarea>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose Image</label>
+        </div>
+    </form>
+</div>
+
+
+<% include footer %>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>

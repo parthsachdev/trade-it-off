@@ -6,6 +6,8 @@
     }
 </style> -->
 
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
 <div class="container-fluid">
     <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -72,26 +74,11 @@
 </div>
 
 
-
-<style>
-    .feedback {
-        color: white;
-        padding: 5px 5px;
-        border-radius: 50%;
-        border-color: #46b8da;
-    }
-
-    #mybutton {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-    }
-</style>
-
-<div id="mybutton">
-    <a class="feedback btn" href="#">
-        <img src="/images/add-button.jpg" width="50" height="50">
+<div id="mybutton" style="position: fixed; bottom: 30px; right: 30px">
+    <a class="btn" href="/newproduct">
+        <i class="fas fa-plus-circle w3-xxxlarge"></i>
     </a>
 </div>
 
 <% include footer %>
+<% include bootstrap-cdn %>

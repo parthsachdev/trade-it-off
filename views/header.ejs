@@ -4,58 +4,72 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <title> Trade It Off !!! </title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="/stylesheets/main.css"> -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   </head>
 
-  <!-- <style>
-    body { padding-top: 100px; }
-  </style> -->
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
 
   <body>
-    <div class="container" style="padding-top: 50px;">
-      <!-- navbar -->
-      <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top">
-        <a href="/" class="navbar-brand">Trade It Off</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"> </span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav ml-auto">
+    
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top">
+      <div class="container">
+        <a href="/" class="navbar-brand"> Trade It Off </a>
 
-            <li class="navbar-item">
-                <div class="dropdown">
-                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Categories
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="/mobiles"> Mobiles </a></li>
-                    <li><a href="/furniture"> Furniture </a></li>
-                    <li><a href="/bikes"> Bikes </a></li>
-                  </ul>
-                </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav ml-auto">
+            
+            <% if (loggedIn == true) { %>
+              <li class="nav-item">
+                <span class="navbar-text" style="color: white;"> Logged In as <%= login_user_id %> </span>
+              </li>
+            <% } %>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/cars">Cars</a>
+                <a class="dropdown-item" href="/bikes">Bikes</a>
+                <a class="dropdown-item" href="/furniture">Furniture</a>
+                <a class="dropdown-item" href="/electronics">Electronics</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">All</a>
+              </div>
             </li>
 
-            <li class="navbar-item">
+            <li class="nav-item">
               <a href="/orders" class="nav-link"> Orders </a>
             </li>
-  
-            <li class="navbar-item">
-              <a href="/login" class="nav-link"> Login </a>
-            </li>
-  
-            <li class="navbar-item">
-                <a href="/signup" class="nav-link"> Sign Up </a>
-            </li>
+            
+            <% if (!loggedIn) { %>
+              <li class="nav-item">
+                <a href="/login" class="nav-link"> Login <i class="fas fa-user"></i> </a>
+              </li>
+            
+              <li class="nav-item">
+                  <a href="/signup" class="nav-link"> Sign Up <i class="fas fa-user-plus"></i> </a>
+              </li>
+
+            <%} else {%>
+              <li class="nav-item">
+                <a href="/signout" class="nav-link"> Sign Out <i class="fas fa-sign-out-alt"></i> </a>
+              </li>
+            <% } %>
           </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-    </div>
+

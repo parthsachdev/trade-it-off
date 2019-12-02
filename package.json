@@ -4,16 +4,19 @@
   "description": "An ecommerce website.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Parth Sachdev",
   "license": "ISC",
   "dependencies": {
+    "alert-node": "^2.0.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
+    "formidable": "^1.2.1",
     "multer": "^1.4.2",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.4"

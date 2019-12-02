@@ -17,16 +17,16 @@
     <div class="col-md-9">
       <h4>Product in your cart:</h4>
       <div class="thumbnail">
-        <img class="img-responsive" src="<%= product.img_url %>" alt="">
+        <img class="img-responsive" src="<%= product.img_url %>" alt="" width="100", height="100">
         <div class="caption-full">
-          <h4 class="pull-right"><i class="fas fa-rupee-sign"></i><%=product.price%></h4>
+          <h4 class="pull-right"><i class="fas fa-rupee-sign"></i> <%=product.price%></h4>
           <h4><a><%= product.product_name %></a></h4>
           <p><%= product.description %></p>
         </div>
       </div>
       <div class="well">
         <div class="text-right">
-          <a href="/products/buy/<%=product.product_id%>/<%=product.product_name%>/<%=product.price%>/<%=product.category%>/<%=product.user_id%>" class="btn btn-success">BUY NOW</a>
+          <a href="/products/buy/<%=product.product_id%>/<%=product.product_name%>/<%=product.price%>/<%=product.category%>/<%=product.user_id%>" class="btn btn-primary">BUY NOW</a>
         </div>
       </div>
     </div>

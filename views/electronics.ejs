@@ -1,0 +1,29 @@
+<% include header %>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1> <i class="fas fa-laptop-code"></i> Electronics </h1>
+    </div>
+</div>
+
+
+<!-- Electronics -->
+<div class=container>
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+        <% products.forEach(function(product){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= product.img_url %>" alt="">
+                <div class="caption">
+                <h4><%= product.product_name %></h4>
+                <h5><i class="fas fa-rupee-sign"> </i><%= product.price %></h5>
+                </div>
+                <a class="btn btn-primary" href="/products/<%=product.product_id%>">More Info</a>
+            </div>
+            </div>
+        <% }); %> 
+    </div>
+</div>
+
+<% include footer %>
+<% include bootstrap-cdn %>
