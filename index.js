@@ -6,7 +6,7 @@ const express = require('express');
 const mysql = require('mysql');
 const multer = require('multer');
 
-const port = 5000;
+const port = process.env.PORT || 3000;
 
 var app = express();
 
