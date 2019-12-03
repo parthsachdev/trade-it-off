@@ -68,7 +68,7 @@ app.use((req, res, next) => {
 // Home Page and All Products Page
 app.get("/", (req, res) => {
     console.log("GET " + req.url);
-    var sql_query = "SELECT * FROM products WHERE status=1";
+    var sql_query = `SELECT * FROM products WHERE status=1 AND user_id<>'${login_user_id}'`;
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -82,7 +82,7 @@ app.get("/", (req, res) => {
 
 // Category Cars
 app.get("/cars", (req, res) => {
-    sql_query = "SELECT * FROM products WHERE category='cars' AND status=1";
+    var sql_query = `SELECT * FROM products WHERE category='cars' AND status=1 AND user_id<>'${login_user_id}'`;
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -224,7 +224,7 @@ app.get("/myproducts", (req, res) => {
     if (!loggedIn) {
         res.redirect("/login");
     }
-    var sql_query = `SELECT * FROM products p, orders o WHERE o.seller_id='${login_user_id}' AND o.product_id=p.product_id`;
+    var sql_query = `SELECT * FROM products p WHERE p.user_id='${login_user_id}'`;
     conn.query(sql_query, (err, rows, fields) => {
         if (err)
             console.log(err);
