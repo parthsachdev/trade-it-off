@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 var loggedIn = false;
 var login_user_id = "";
 
-MySQL connection setup
+// MySQL connection setup
 var conn = mysql.createConnection({
     connectionLimit: 50,
     host: "sql12.freemysqlhosting.net",
