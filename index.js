@@ -39,7 +39,8 @@ var conn = mysql.createConnection({
     host: "sql12.freemysqlhosting.net",
     user: "sql12314111",
     password: "YPjbufNd5u",
-    database: "sql12314111"
+    database: "sql12314111",
+    multipleStatements: true
 });
 conn.connect((err) => {
     if (err) {
@@ -73,7 +74,7 @@ app.get("/", (req, res) => {
 
 // Category Cars
 app.get("/cars", (req, res) => {
-    sql_query = "SELECT * FROM PRODUCTS WHERE category='cars' AND status=1";
+    sql_query = "SELECT * FROM products WHERE category='cars' AND status=1";
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -89,7 +90,7 @@ app.get("/cars", (req, res) => {
 
 // Category Bikes
 app.get("/bikes", (req, res) => {
-    sql_query = "SELECT * FROM PRODUCTS WHERE category='bikes' AND status=1";
+    sql_query = "SELECT * FROM products WHERE category='bikes' AND status=1";
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -121,7 +122,7 @@ app.get("/furniture", (req, res) => {
 
 // Category Electronics
 app.get("/electronics", (req, res) => {
-    sql_query = "SELECT * FROM PRODUCTS WHERE category='electronics' AND status=1";
+    sql_query = "SELECT * FROM products WHERE category='electronics' AND status=1";
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -138,7 +139,7 @@ app.get("/electronics", (req, res) => {
 // Add Product Page
 app.get("/newproduct", (req, res) => {
     if (!loggedIn) {
-        res.redirect("/");
+        res.redirect("/login");
     }
     else {
         console.log("GET " + req.url);
@@ -196,13 +197,37 @@ app.get("/signup", (req, res) => {
 // Orders Page
 app.get("/orders", (req, res) => {
     if (!loggedIn) {
-        res.redirect("/");
+        res.redirect("/login");
     }
-    else {
-        console.log("GET " + req.url);
-        res.render("orders.ejs");
-    }
+    var sql_query = `SELECT * FROM products p, orders o WHERE o.buyer_id='${login_user_id}' AND o.product_id=p.product_id`;
+    conn.query(sql_query, (err, rows, fields) => {
+        if (err)
+            console.log(err);
+        else {
+            res.render("orders.ejs", {
+                products: rows
+            });
+        }
+    });
 });
+
+// My Products
+app.get("/myproducts", (req, res) => {
+    if (!loggedIn) {
+        res.redirect("/login");
+    }
+    var sql_query = `SELECT * FROM products p, orders o WHERE o.seller_id='${login_user_id}' AND o.product_id=p.product_id`;
+    conn.query(sql_query, (err, rows, fields) => {
+        if (err)
+            console.log(err);
+        else {
+            res.render("myproducts.ejs", {
+                products: rows
+            });
+        }
+    });
+});
+
 
 // Product page with product_id
 app.get("/products/:id", (req, res) => {
@@ -220,12 +245,20 @@ app.get("/products/:id", (req, res) => {
 
 // Buy Now
 app.get("/products/buy/:id/:seller", (req,res) => {
+    if (!loggedIn) {
+        res.redirect("/");
+    }
     var product_id = req.params.id;
     var seller_id = req.params.seller;
     var buyer_id = login_user_id;
+    var order = {
+        seller_id: seller_id,
+        buyer_id: buyer_id,
+        product_id: product_id
+    };
 
-    var query = "UPDATE products SET status=0 WHERE product_id=?";
-    conn.query(query, product_id, function(err, product, fields){
+    var query = "UPDATE products SET status=0 WHERE product_id=?; INSERT INTO orders SET ?";
+    conn.query(query, [product_id, order], function(err, product, fields){
         if(err){
             console.log(err);
         }
@@ -282,7 +315,7 @@ app.post("/signup", (req, res) => {
         phone: req.body.phone,
         password: req.body.password
     };
-    var sql_query = `INSERT INTO USER SET ?`;
+    var sql_query = `INSERT INTO user SET ?`;
     conn.query(sql_query, newuser, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -298,8 +331,6 @@ app.post("/signup", (req, res) => {
     });
 
 })
-  
-
 
 // Start the server
 var server = app.listen(port, () => {
