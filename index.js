@@ -33,23 +33,23 @@ app.set('view engine', 'ejs');
 var loggedIn = false;
 var login_user_id = "";
 
-// MySQL connection setup
-// var conn = mysql.createConnection({
-//     connectionLimit: 50,
-//     host: "sql12.freemysqlhosting.net",
-//     user: "sql12314111",
-//     password: "YPjbufNd5u",
-//     database: "sql12314111",
-//     multipleStatements: true
-// });
+MySQL connection setup
 var conn = mysql.createConnection({
     connectionLimit: 50,
-    host: "localhost",
-    user: "parth",
-    password: "parth_admin",
-    database: "ecommerce",
+    host: "sql12.freemysqlhosting.net",
+    user: "sql12314111",
+    password: "YPjbufNd5u",
+    database: "sql12314111",
     multipleStatements: true
 });
+// var conn = mysql.createConnection({
+//     connectionLimit: 50,
+//     host: "localhost",
+//     user: "parth",
+//     password: "parth_admin",
+//     database: "ecommerce",
+//     multipleStatements: true
+// });
 conn.connect((err) => {
     if (err) {
         console.log(err);
