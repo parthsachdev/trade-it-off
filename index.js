@@ -34,12 +34,20 @@ var loggedIn = false;
 var login_user_id = "";
 
 // MySQL connection setup
+// var conn = mysql.createConnection({
+//     connectionLimit: 50,
+//     host: "sql12.freemysqlhosting.net",
+//     user: "sql12314111",
+//     password: "YPjbufNd5u",
+//     database: "sql12314111",
+//     multipleStatements: true
+// });
 var conn = mysql.createConnection({
     connectionLimit: 50,
-    host: "sql12.freemysqlhosting.net",
-    user: "sql12314111",
-    password: "YPjbufNd5u",
-    database: "sql12314111",
+    host: "localhost",
+    user: "parth",
+    password: "parth_admin",
+    database: "ecommerce",
     multipleStatements: true
 });
 conn.connect((err) => {
@@ -90,7 +98,7 @@ app.get("/cars", (req, res) => {
 
 // Category Bikes
 app.get("/bikes", (req, res) => {
-    sql_query = "SELECT * FROM products WHERE category='bikes' AND status=1";
+    sql_query = "SELECT * FROM products WHERE category='bike' AND status=1";
     conn.query(sql_query, (err, rows, fields) => {
         if (err) {
             console.log(err);
@@ -246,7 +254,7 @@ app.get("/products/:id", (req, res) => {
 // Buy Now
 app.get("/products/buy/:id/:seller", (req,res) => {
     if (!loggedIn) {
-        res.redirect("/");
+        res.redirect("/login");
     }
     var product_id = req.params.id;
     var seller_id = req.params.seller;
@@ -263,10 +271,16 @@ app.get("/products/buy/:id/:seller", (req,res) => {
             console.log(err);
         }
         else{
-            res.render("buy.ejs", {seller_id:seller_id});
+            res.render("buy.ejs");
         }
     });
 });
+
+// Submit Rating
+app.post("/submitrating", (req, res) => {
+    res.redirect("/");
+})
+
 
 // Signout
 app.get("/signout", (req, res) => {
@@ -288,7 +302,6 @@ app.post("/login", (req, res) => {
             console.log(err);
         }    
         else {
-            console.log(rows);
             if (rows.length == 0) {
                 res.redirect("/login");
             }
