@@ -11,4 +11,4 @@
 </ul>
 <br>
 
-<p> You can find the link to the working project here: <a href="trade-it-off.herokuapp.com"> Trade It Off </a> </p>
+<p> You can find the link to the working project here: <a href="https://trade-it-off.herokuapp.com"> Trade It Off </a> </p>
