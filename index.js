@@ -36,10 +36,10 @@ var login_user_id = "";
 // MySQL connection setup
 var conn = mysql.createConnection({
     connectionLimit: 50,
-    host: "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "llycw28o9vfvxc5i",
-    password: "nubbewppu9ded265",
-    database: "sc2bgj2rvnbjazea",
+    host: "sql12.freemysqlhosting.net",
+    user: "sql12314111",
+    password: "YPjbufNd5u",
+    database: "sql12314111",
     multipleStatements: true
 });
 // var conn = mysql.createConnection({
